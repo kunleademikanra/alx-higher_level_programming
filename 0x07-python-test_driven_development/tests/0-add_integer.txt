@@ -1,0 +1,99 @@
+This module provides a function add_integer(a, b=98) that adds two integers or floats together.
+
+Usage
+add_integer(...) returns the sum of the two arguments. If the arguments are numbers, that value is equivalent to using the + operator.
+
+Examples
+Import the add_integer() function:
+
+python
+Copy code
+>>> add_integer = __import__('0-add_integer').add_integer
+Add two integers:
+
+python
+Copy code
+>>> add_integer(2, 3)
+5
+Add a positive integer and a negative integer:
+
+python
+Copy code
+>>> add_integer(2, -3)
+-1
+Add two floats:
+
+python
+Copy code
+>>> add_integer(2.0, 3.0)
+5
+Note that floats are cast to integers before addition:
+
+python
+Copy code
+>>> add_integer(2.9, 0.2)
+2
+
+>>> add_integer(-2.9, -0.2)
+-2
+Add a float and an integer:
+
+python
+Copy code
+>>> add_integer(2.3, -3)
+-1
+The second argument is optional. If not provided, it defaults to 98:
+
+python
+Copy code
+>>> add_integer(2)
+100
+Non-Numbers
+add_integer() expects that both arguments are either integers or floats. If either argument is not an integer or float, a TypeError is raised:
+
+sql
+Copy code
+>>> add_integer("hello", 3)
+Traceback (most recent call last):
+TypeError: a must be an integer
+
+>>> add_integer(2, "hello")
+Traceback (most recent call last):
+TypeError: b must be an integer
+
+>>> add_integer(None)
+Traceback (most recent call last):
+TypeError: a must be an integer
+
+>>> add_integer(2.3, None)
+Traceback (most recent call last):
+TypeError: b must be an integer
+If both arguments are not integers or floats, a TypeError message is only printed for the first argument:
+
+sql
+Copy code
+>>> add_integer("hello", "there")
+Traceback (most recent call last):
+TypeError: a must be an integer
+The function will fail if infinity is provided:
+
+sql
+Copy code
+>>> add_integer(float('inf'))
+Traceback (most recent call last):
+OverflowError: cannot convert float infinity to integer
+ 
+>>> add_integer(2, float('inf'))
+Traceback (most recent call last):
+OverflowError: cannot convert float infinity to integer
+And again with NaN values:
+
+sql
+Copy code
+>>> add_integer(float('nan'))
+Traceback (most recent call last):
+ValueError: cannot convert float NaN to integer
+
+>>> add_integer(2, float('nan'))
+Traceback (most recent call last):
+ValueError: cannot convert float NaN to integer
